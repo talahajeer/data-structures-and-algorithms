@@ -144,7 +144,21 @@ Return the resulting output array.
 ------------------------------------------------------------------------------------------------ */
 
 const fizzbuzz = (arr) => {
-  // Solution code here...
+const newArr = [];
+arr.forEach(value =>{
+  if (value % 3 === 0 || value % 5 === 0) {
+  if (value % 5 === 0) {
+    newArr.push('Buzz');
+  }else if (value % 3 === 0){
+    newArr.push('Fizz');
+  }else{
+    newArr.push('Fizz Buzz');
+  }
+  }else{
+    newArr.push(value);
+  }
+});
+return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
