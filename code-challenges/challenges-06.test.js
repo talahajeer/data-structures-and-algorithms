@@ -99,7 +99,7 @@ Write a function named checkValues that takes in an object and a value and retur
 const checkValues = (obj, value) => {
   if (Object.values(obj).includes(value)) {
     return true;
-  }else{
+  } else {
     return false;
   }
 };
@@ -125,10 +125,10 @@ HR has asked you to change the data to make it easier to print so that it looks 
 
 const updateNumbers = (obj) => {
   let arr = [];
-for(const [key,value] of Object.entries(obj)){
-arr.push(`${key}: ${value}`);
-}
-return arr;
+  for (const [key, value] of Object.entries(obj)) {
+    arr.push(`${key}: ${value}`);
+  }
+  return arr;
 };
 
 
@@ -141,7 +141,18 @@ Write a function named getHouses that returns a new array containing the names o
 
 const getHouses = (arr) => {
   let houses = [];
-  // Solution code here...
+  arr.sort((value1, value2) => {
+    if (value1["children"].length > value2["children"].length) {
+      return 1;
+    } else if (value1["children"].length < value2["children"].length) {
+      return -1;
+    } else {
+      return 0;
+    }
+  })
+  arr.forEach(obj => {
+    houses.push(obj["house"]);
+  });
   return houses;
 };
 
@@ -158,8 +169,16 @@ hasChildrenValues(characters, 'Sansa') will return false
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenValues = (arr, character) => {
-  // Solution code here...
-
+  let flag = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (Object.values(arr[i]).includes(character)) {
+      // console.log(true);
+      flag = 1;
+      break;
+    }
+  }
+  return flag;
+  
 };
 
 /* ------------------------------------------------------------------------------------------------
