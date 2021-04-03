@@ -25,8 +25,8 @@ let starWarsPeople = [
 ];
 
 const sortStarWarsCharacters = (starWarsArr) => {
-  starWarsArr.sort((a, b) => a.height - b.height);
-  return starWarsArr;
+  let newArr = starWarsArr.sort((a, b) => parseInt(a.height) < parseInt(b.height) ? 1: -1 );
+  return newArr;
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -135,20 +135,13 @@ const listFoods = (recipe) => {
   let result = [];
 
   let ingredientList = recipe["ingredients"];
-  // console.log(ingredientList);
-
-ingredientList.forEach(value =>{
-  // console.log(value)
-  // console.log(value.indexOf(" "));
-  // do{
-  let newValue = value.slice((value.indexOf(" ")));
-  // console.log(newValue)
-result.push(newValue);
-  // } while((value.indexOf(" "))!= -1)
- });
-
-  
-// console.log(result)
+  ingredientList.forEach(value => {
+    const split = value.split(" ");
+    const slice = split.slice(2);
+    const join = slice.join(" ");
+    result.push(join);
+  });
+  // console.log(result)
   return result;
 };
 
