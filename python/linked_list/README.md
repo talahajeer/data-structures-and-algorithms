@@ -3,7 +3,7 @@ Linked List is a type of data structure
 ## Challenge
 [Code 05](https://github.com/talahajeer/data-structures-and-algorithms/pull/26)
 ## Approach & Efficiency
-![code 05 whiteboard](#)
+
 ## Efficiency
 Big O :
 O(1) Time/space performance for insert method.
