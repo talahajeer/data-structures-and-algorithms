@@ -74,3 +74,10 @@ From the root of the `data-structures-and-algorithms/python` folder, execute the
 - **Run every possible test** - `pytest`
 - **Run filtered tests** - `pytest -k some_filter_text`
 - **Run in watch mode** - `ptw` or `pytest-watch`
+
+
+## Table of Contents
+[array-reverse](python/challenges/array_reverse/README.md)
+[array-shift](python/challenges/array_shift/README.md)
+[array-binary-search](python/challenges/array_binary_search/README.md)
+[linked-list](python/linked_list/README.md)
