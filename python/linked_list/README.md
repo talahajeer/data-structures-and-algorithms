@@ -8,3 +8,5 @@ Linked List is a type of data structure
 Big O :
 O(1) Time/space performance for insert method.
 O(n) Time and O(1) space performance for includes method.
+
+![whiteBorad](../assets/linked-list.jpg)
