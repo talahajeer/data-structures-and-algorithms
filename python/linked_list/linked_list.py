@@ -18,6 +18,43 @@ class Linked_list:
       new_node.next = self.head
     self.head = new_node
 
+  def append(self,value):
+      node = Node(value)
+      current = self.head
+      while current.next :
+        current=current.next
+      current.next =node
+
+
+  def insertAfter(self ,value, newVal) :
+    node=Node(newVal)
+    if self.head is None:
+      self.head = node
+    else:
+      current = self.head
+      while current.next:
+        if current.data==value:
+          bef_val=current.next
+          current.next =node
+          node.next=bef_val
+          return node.data
+        current=current.next
+
+  def insertBefore(self, value, newVal):
+      current = self.head
+      if current.data == value:
+          new_node = Node(newVal)
+          new_node.next = current
+          self.head = new_node
+      else:
+          while (current.next):
+              if current.next.data == value:
+                  new_node = Node(newVal)
+                  new_node.next = current.next
+                  current.next = new_node
+                  break
+              current = current.next  
+
   def includes(self,value):
     current = self.head 
     is_include = False
@@ -48,5 +85,7 @@ if __name__ == "__main__":
   linked.insert("Muhannad")
   linked.insert("Manar")
   linked.insert(10)
-#   print(linked)
-#   print(linked.includes(55),linked.includes("Manar"),linked.includes(5))
+  linked.append("Adel")
+  linked.insertAfter(10,"Tala")
+  linked.insertBefore("Tala","One")
+  print(linked)

@@ -11,6 +11,20 @@ def test_includes(list_test):
     excpected = [False, True , False]
     assert excpected == actual
 
+def test_append(list_test):
+    excpected = "{10} -> {Manar} -> {Muhannad} -> {Adel} ->  NULL"
+    actual = f"{list_test}"
+    assert excpected == actual
+
+def test_insertAfter(list_test):
+    actual = f"{list_test}"
+    excpected = "{10} -> {Tala} -> {Manar} -> {Muhannad} ->  NULL"
+    assert excpected == actual
+
+def test_insertBefore(list_test):
+    actual = f"{list_test}"
+    excpected = "{10} -> {One} -> {Tala} -> {Manar} -> {Muhannad} ->  NULL"
+    assert excpected == actual
 
 @pytest.fixture
 def list_test():
@@ -18,4 +32,7 @@ def list_test():
     linked.insert("Muhannad")
     linked.insert("Manar")
     linked.insert(10)
+    linked.append("Adel")
+    linked.insertAfter(10,"Tala")
+    linked.insertBefore("Tala","One")
     return linked
