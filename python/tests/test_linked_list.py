@@ -26,6 +26,18 @@ def test_insertBefore(list_test_insertBefore):
     excpected = "{10} -> {One} -> {Tala} -> {Manar} -> {Muhannad} ->  NULL"
     assert excpected == actual
 
+def test_kthFromEnd(list_test_insert):
+    actual_output1 =list_test_insert.kthFromEnd(2)
+    actual_output2=list_test_insert.kthFromEnd(0)
+    actual_output3 =list_test_insert.kthFromEnd(10)
+    expected_output1 = 10
+    expected_output2 = 1
+    expected_output3 = "Sorry invalid input"
+    assert actual_output1 == expected_output1
+    assert actual_output2 == expected_output2
+    assert actual_output3 == expected_output3
+
+
 @pytest.fixture
 def list_test_insert():
     linked = Linked_list()

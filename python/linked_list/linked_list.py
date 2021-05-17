@@ -64,7 +64,22 @@ class Linked_list:
         current = current.next
     return is_include
       
+  def kthFromEnd(self, k):
+        try:
+          n = -1
+          current = self.head
+          while current:
+            current = current.next
+            n = n + 1
+          if n >= k:
+            current = self.head
+            for i in range(n - k):
+              current = current.next
+          return current.data
+        except:
+          return "no value found"
 
+            
   def __str__(self):
     """ Returns a string representaiton of the linked list
         1 -> 3 -> 4 -> Null
