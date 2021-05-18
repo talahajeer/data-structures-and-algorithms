@@ -49,6 +49,9 @@ def list_test_insert():
 @pytest.fixture
 def list_test_append():
     linked = Linked_list()
+    linked.insert("Muhannad")
+    linked.insert("Manar")
+    linked.insert(10)
     linked.append("Adel")  
     return linked
 
