@@ -11,7 +11,7 @@ class Node:
 class Linked_list:
   def __init__(self):
     self.head = None
-
+    
   def insert (self, data=None):
     new_node = Node(data)
     if self.head :
@@ -79,11 +79,8 @@ class Linked_list:
         except:
           return "no value found"
 
-            
   def __str__(self):
-    """ Returns a string representaiton of the linked list
-        1 -> 3 -> 4 -> Null
-    """
+    
     output = ""
 
     current = self.head
@@ -103,4 +100,5 @@ if __name__ == "__main__":
   linked.append("Adel")
   linked.insertAfter(10,"Tala")
   linked.insertBefore("Tala","One")
-  print(linked)
+  zzz = linked.zipLists([1,2,3])
+  print(zzz)
