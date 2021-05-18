@@ -16,3 +16,6 @@ O(n) Time and O(1) space performance for includes method.
 ## Approach & Efficiency
   Big O is linear
 ![whiteBorad](../challenges/assets/linked-list2.jpg)
+
+### ll-kth-from-end
+![whiteBorad](../challenges/assets/ll-kth-from-end.jpg)
