@@ -21,9 +21,12 @@ class Linked_list:
   def append(self,value):
       node = Node(value)
       current = self.head
-      while current.next :
-        current=current.next
-      current.next =node
+      if current:
+        while current.next :
+          current=current.next
+        current.next =node
+      else:
+        self.head = node  
 
 
   def insertAfter(self ,value, newVal) :
@@ -100,5 +103,3 @@ if __name__ == "__main__":
   linked.append("Adel")
   linked.insertAfter(10,"Tala")
   linked.insertBefore("Tala","One")
-  zzz = linked.zipLists([1,2,3])
-  print(zzz)

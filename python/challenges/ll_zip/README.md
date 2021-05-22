@@ -12,4 +12,4 @@ looping while the current1 or current2 not None, inside the loop append the curr
 Time O(N)
 space O(1)
 
-![whiteboard](#)
+![whiteboard](../assets/ll-zip.jpg)
