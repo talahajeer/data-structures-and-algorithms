@@ -97,7 +97,25 @@ class BinaryTree:
     return self.post_list_values
   
   
-  
+  def find_maximum_value(self):
+      """ find the maximum value """
+      if self.root is not None:
+          self.maximum_value = self.root.value
+          def walk(root):
+            if root.left:
+              walk(root.left)
+
+            if self.maximum_value < root.value:
+              self.maximum_value = root.value
+              
+            if root.right:
+              walk(root.right)
+              
+          walk(self.root)
+          return self.maximum_value
+      else:
+        return 'No tree found'  
+
   def bread_first(self):
      # Use queque for FIFO
      pass
@@ -162,6 +180,7 @@ if __name__ == "__main__":
   print(binary_tree.pre_order())
   print(binary_tree.in_order())
   print(binary_tree.post_order())
+  print(binary_tree.find_maximum_value())
   
 
   bsTree = BinarySearchTree()

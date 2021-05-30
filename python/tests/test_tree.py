@@ -40,7 +40,19 @@ def test_post_order(tree_test):
  actual = [binary_tree.post_order()]
  expected = [[2, 4, 5, 3, 1]]
  assert actual == expected 
- 
+
+def test_max_value(tree_test):
+ binary_tree = BinaryTree(tree_test) 
+ actual = binary_tree.find_maximum_value()
+ expected = 5
+ assert actual == expected  
+
+def test_max_value_empty(tree_test):
+    binary_tree = BinaryTree() 
+    actual = binary_tree.find_maximum_value()
+    expected = 'No tree found'
+    assert actual == expected 
+
 def test_add_in_BST():
     obj = BinarySearchTree()
     bst_node = TNode(50)
