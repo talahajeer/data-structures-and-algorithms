@@ -47,6 +47,11 @@ class BinaryTree:
     self.in_list_values = []
     self.post_list_values = []
 
+  def __str__(self):
+      if self.root:
+        return f"{self.root.value}"  
+      return f"{self.root}"
+
   def pre_order(self):
     """ Pre-order traversal of our tree """
     def walk(root):
@@ -98,39 +103,49 @@ class BinaryTree:
      pass
 
 class BinarySearchTree():
-    def __init__(self,root=None):
-        self.root = root
- 
+  def __init__(self,value=None):
+    self.node = TNode(value)
 
-    def add(self,value,tree):
-
-        if tree.root.value == None:
-            tree.root = TNode(value)
+  def add(self,value):
+    # new_node = Node(value)
+    if self.node.value == None:
+      self.node.value = value
+    else:
+      if value == self.node.value:
+        return 'value already exists'
+      
+      if value < self.node.value:
+        if self.node.left:
+          self.node.left.add(value)
         else:
-            if tree.root.value == value:
-                return "Value already exists in the tree"
-            if value < tree.root.value:
-                if tree.root.left:
-                    print(tree.root.value,"in less check",value)
-                    tree.root.left = self.add(value,tree.root.left)  
-            else:
-                if tree.root.right:
-                    print(tree.root.value,"in greater check",value)
-                    tree.root.right = self.add(value,tree.root.right) 
-        return BinaryTree.pre_order(tree)
+          self.node.left = BinarySearchTree(value)
+      else:
+        if self.node.right:
+          self.node.right.add(value)
+        else:
+          self.node.right = BinarySearchTree(value)
 
-    def contains(self,value):
-        if value == self.root:
-            return True
+  def in_order(self, list = []):
+    if (self.node.left):
+      self.node.left.in_order(list)
+    list.append(self.node.value)
+    if (self.node.right):
+      self.node.right.in_order(list)
+    return list
 
-        if value < self.root:
-            if self.left == None:
-                return False
-            return self.left.contains(value)
-
-        if self.right == None:
-            return False
-        return self.right.contains(value)
+  def contains(self,value,parent= None):
+    if value == self.node.value:
+      return True
+    if (value < self.node.value):
+      if (self.node.left):
+        return self.node.left.contains(value, self.node)
+      else:
+        return False
+    else:
+      if (self.node.right):
+        return  self.node.right.contains(value, self.node)
+      else:
+        return False
 
                         
 
@@ -147,14 +162,18 @@ if __name__ == "__main__":
   print(binary_tree.pre_order())
   print(binary_tree.in_order())
   print(binary_tree.post_order())
+  
 
-
-  Binary_Search_Tree = BinarySearchTree()
-#   new_tree = Binary_Search_Tree.add(6,binary_tree)
-#   print(Binary_Search_Tree.add(6,Binary_Node))
-#   print(new_tree)
-#   print(binary_tree.pre_order())
-  print(Binary_Search_Tree.contains(1))
+  bsTree = BinarySearchTree()
+  bsTree.add(5)
+  bsTree.add(4)
+  bsTree.add(3)
+  bsTree.add(2)
+  bsTree.add(1)
+  bsTree.add(6)
+  bsTree.add(0)
+  print(bsTree.contains(3),bsTree.contains(13))
+  print(bsTree.in_order())
 
 
    
