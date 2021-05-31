@@ -1,4 +1,6 @@
 # import pysnooper
+class EmptyStackException(Exception):
+  pass 
 
 class Node:
   def __init__(self, value):
@@ -33,6 +35,41 @@ class Queue:
   def __init__(self):
     self.front = None
     self.rear = None
+
+  def enqueue(self, value):
+    node = Node(value)
+    if not self.front:
+      self.front = node
+      self.rear = node
+    else:
+      self.rear.next = node
+      self.rear = self.rear.next
+
+  def dequeue(self):
+    if self.front:
+      current = self.front
+      self.front = current.next
+      return current.value
+    else: 
+      raise EmptyStackException("Cannot dequeue an empty queue")
+   
+  def peek(self):
+    if self.front:
+      return self.front.value
+    raise EmptyStackException("Cannot peek an empty queue")    
+
+  def is_empty(self):
+    if self.front:
+      return False
+    return True  
+
+  def __str__(self):
+    current = self.front
+    items = []
+    while current:
+      items.append(str(current.value))
+      current = current.next
+    return " =>> ".join(items)  
 
 class TNode:
   def __init__(self, value=None):
@@ -117,8 +154,20 @@ class BinaryTree:
         return 'No tree found'  
 
   def bread_first(self):
-     # Use queque for FIFO
-     pass
+     self.bread_first_list = []
+     queque = Queue()
+     queque.enqueue(self.root)
+     while not queque.is_empty():
+      item = queque.dequeue()
+      self.bread_first_list.append(item.value)
+
+      if item.left is not None:
+        queque.enqueue(item.left)
+
+      if item.right is not None:
+        queque.enqueue(item.right)
+
+     return self.bread_first_list  
 
 class BinarySearchTree():
   def __init__(self,value=None):
