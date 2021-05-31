@@ -53,6 +53,12 @@ def test_max_value_empty(tree_test):
     expected = 'No tree found'
     assert actual == expected 
 
+def test_breadth_first(tree_bread):
+    actual = tree_bread.bread_first()
+    expected = [2, 7, 5, 2, 6, 9, 5, 11, 4]
+    assert actual == expected
+
+
 def test_add_in_BST():
     obj = BinarySearchTree()
     bst_node = TNode(50)
@@ -84,3 +90,18 @@ def tree_test():
     node1.right.left = TNode(4)
     node1.right.right = TNode(5)
     return node1
+
+
+@pytest.fixture
+def tree_bread():
+    node1 = TNode(2)
+    node1.left = TNode(7)
+    node1.left.right = TNode(6)
+    node1.left.right.left = TNode(5)
+    node1.left.right.right = TNode(11)
+    node1.left.left = TNode(2)
+    node1.right = TNode(5)
+    node1.right.right = TNode(9)
+    node1.right.right.left = TNode(4)
+    binary_tree = BinaryTree(node1)
+    return binary_tree         
