@@ -82,6 +82,12 @@ def test_contains(tree_test):
     expected = [False, True, True, False]
     assert actual == expected 
 
+def test_k_array(node1_test):
+  k_tree = K_tree(node1_test)
+  actual = k_tree.FizzBuzzTree()
+  expected = ['1', '2', 'Fizz', '4', 'Buzz', 'Fizz', '7', '8', 'Fizz', 'Buzz']
+  assert actual == expected    
+
 @pytest.fixture
 def tree_test():
     node1 = TNode(1)
@@ -105,3 +111,17 @@ def tree_bread():
     node1.right.right.left = TNode(4)
     binary_tree = BinaryTree(node1)
     return binary_tree         
+
+@pytest.fixture
+def node1_test():
+  node1 = KNode(1)
+  node1.children.append(KNode(2))
+  node1.children.append(KNode(3))
+  node1.children.append(KNode(4))
+  node1.children[0].children.append(KNode(5))
+  node1.children[1].children.append(KNode(6))
+  node1.children[1].children.append(KNode(7))
+  node1.children[2].children.append(KNode(8))
+  node1.children[2].children.append(KNode(9))
+  node1.children[2].children.append(KNode(10))
+  return node1    
