@@ -214,43 +214,99 @@ class BinarySearchTree():
       else:
         return False
 
-                        
-
-
-
-if __name__ == "__main__":
-  node1 = TNode(1)
-  node1.left = TNode(2)
-  node1.right = TNode(3)
-  node1.right.left = TNode(4)
-  node1.right.right = TNode(5)
-
-  binary_tree = BinaryTree(node1)
-  print(binary_tree.pre_order())
-  print(binary_tree.in_order())
-  print(binary_tree.post_order())
-  print(binary_tree.find_maximum_value())
-  
-
-  bsTree = BinarySearchTree()
-  bsTree.add(5)
-  bsTree.add(4)
-  bsTree.add(3)
-  bsTree.add(2)
-  bsTree.add(1)
-  bsTree.add(6)
-  bsTree.add(0)
-  print(bsTree.contains(3),bsTree.contains(13))
-  print(bsTree.in_order())
-
-
-   
-
-
-
-# Think about
 class KNode:
   def __init__(self, value=None):
     self.value = value
     # How could you implement this for k of any size?
     self.children = []
+
+
+class K_tree:
+  def __init__(self, root=None):
+    self.root = root
+
+
+  def __str__(self):
+    if self.root is None:
+        return f"{self.root}"
+    return f"{self.root.value}"
+
+  def bread_first(self):
+     # Use queque for FIFO
+     self.bread_first_list = []
+     queque = Queue()
+     queque.enqueue(self.root)
+     while not queque.is_empty():
+      item = queque.dequeue()
+      self.bread_first_list.append(item.value)
+
+      if len(item.children) > 0 :
+        for i in item.children:
+          queque.enqueue(i)
+     return self.bread_first_list
+
+  def FizzBuzzTree(self):
+     # Use queque for FIFO
+     self.fizzbuzzlist = []
+     queque = Queue()
+     queque.enqueue(self.root)
+     while not queque.is_empty():
+      item = queque.dequeue()
+      print("the item value" , item.value)
+      if item.value % 15 == 0:
+       item.value = "FizzBuzz"
+      elif item.value % 3 ==0 :
+       item.value = 'Fizz'
+      elif item.value % 5 ==0:
+        item.value = 'Buzz'
+      else :
+        item.value = str(item.value)
+      self.fizzbuzzlist.append(item.value)
+
+      if len(item.children) > 0 :
+        for i in item.children:
+          queque.enqueue(i)
+
+
+     return self.fizzbuzzlist
+          
+if __name__ == "__main__":
+  # node1 = TNode(1)
+  # node1.left = TNode(2)
+  # node1.right = TNode(3)
+  # node1.right.left = TNode(4)
+  # node1.right.right = TNode(5)
+
+  # binary_tree = BinaryTree(node1)
+  # print(binary_tree.pre_order())
+  # print(binary_tree.in_order())
+  # print(binary_tree.post_order())
+  # print(binary_tree.find_maximum_value())
+  
+
+  # bsTree = BinarySearchTree()
+  # bsTree.add(5)
+  # bsTree.add(4)
+  # bsTree.add(3)
+  # bsTree.add(2)
+  # bsTree.add(1)
+  # bsTree.add(6)
+  # bsTree.add(0)
+  # print(bsTree.contains(3),bsTree.contains(13))
+  # print(bsTree.in_order())
+
+
+  node1 = KNode(1)
+  node1.children.append(KNode(2))
+  node1.children.append(KNode(3))
+  node1.children.append(KNode(4))
+  node1.children[0].children.append(KNode(5))
+  node1.children[1].children.append(KNode(6))
+  node1.children[1].children.append(KNode(7))
+  node1.children[2].children.append(KNode(8))
+  node1.children[2].children.append(KNode(9))
+  node1.children[2].children.append(KNode(10))
+
+  k_tree = K_tree(node1)
+  print(k_tree.bread_first())
+  print(k_tree.FizzBuzzTree())

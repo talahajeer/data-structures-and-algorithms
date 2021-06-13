@@ -13,3 +13,7 @@
 ## Implemintation of Bread First
   In collaboration with Manar and Noor
   ![whiteboard](../challenges/assets/breadth_first.jpg)
+
+## Implemintation of Fizz Buzz 
+ In collaboration with Manar and Noor, Raneem
+ ![whiteboard](../challenges/assets/breadth_first.jpg)
