@@ -23,6 +23,13 @@ def merge(left,right,arr):
         k = k+1
 
     if i == len(left):
-        pass
+        for item in right[j:]:
+            arr[k] = item
+            k += 1
     else:
-        pass
+        for item in left[i:]:
+            arr[k] = item
+            k += 1
+
+arr = [8,4,23,42,16,15] 
+print(merge_sort(arr))           
