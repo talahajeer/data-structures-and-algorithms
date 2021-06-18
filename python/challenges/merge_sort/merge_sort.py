@@ -31,7 +31,8 @@ def merge(left,right,arr):
         for item in left[i:]:
             arr[k] = item
             k += 1
-    # print('- merge ',arr)
 
-    arr = [8,4,23,42,16,15]
-    print(merge_sort(arr))
+
+arr = [8,4,23,42,16,15] 
+print(merge_sort(arr))           
+
