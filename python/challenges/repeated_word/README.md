@@ -1,0 +1,1 @@
+![repeated](../assets/repeated-word.jpg)
