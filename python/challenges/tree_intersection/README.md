@@ -1,0 +1,1 @@
+![tree-intersection](../assets/tree_intersection.jpg)
