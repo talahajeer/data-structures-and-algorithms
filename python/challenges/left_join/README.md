@@ -1,0 +1,1 @@
+![left-join](../assets/left-join.jpg)
