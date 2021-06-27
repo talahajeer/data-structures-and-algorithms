@@ -54,6 +54,20 @@ def test_get_nighbors_one_node():
     expected = [[0,3]]
     assert actual == expected
 
+def test_breadth_first_search(test_):
+    actual = test_.breadth_first_search(2)
+    expected = [2, 3]
+    assert actual == expected
+
+    test_.add_edge(five,one)
+    actual2 = test_.breadth_first_search(2)
+    expected2 = [2, 4, 1, 3]
+    assert actual2 == expected2
+
+    actual3 = test_.breadth_first_search('8')
+    expected3 = 'value does not exist'
+    assert actual3 == expected3
+
 
 @pytest.fixture
 def test_():
@@ -76,4 +90,20 @@ def test_():
   g.add_vertex(fourToo)
   g.add_vertex(five)
 
+  g.add_edge(zero, two, 3)
+  g.add_edge(two, three)
+  g.add_edge(two, four)
+  g.add_edge(three, five)
+  g.add_edge(four, five)
+
   return g
+
+
+#   g.add_node('A')
+#     g.add_node('B')
+#     g.add_node('C')
+#     g.add_node('D')
+
+#     g.add_edge('A','B',9)
+#     g.add_edge('A','C')
+#     g.add_edge('B','D')
