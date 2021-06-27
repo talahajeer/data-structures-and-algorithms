@@ -1,5 +1,5 @@
 from collections import deque
-from stacks_and_queues.stacks_and_queues import *
+# from stacks_and_queues.stacks_and_queues import *
 class Vertex:
   def __init__(self,value):
     self.value = value
@@ -8,6 +8,24 @@ class Edge:
   def __init__(self,vertex, weight =0):
     self.vertex = vertex
     self.weight = weight
+
+class Queue():
+
+    def __init__(self) -> None:
+
+        self.dq = deque()
+
+    def enqueue(self, value):
+
+        self.dq.appendleft(value)
+
+    def dequeue(self):
+
+        return self.dq.pop()
+
+    def __len__(self):
+
+        return len(self.dq)
 
 class Graph:
 
@@ -70,19 +88,23 @@ class Graph:
     else:
       return 'null'
 
+  def get_children(self, vertex):
+    return self.adjacencyList.get(vertex, [])
+
   def breadth_first_search(self, start_vertex, action=(lambda x: None)):
     queue = Queue()
     visited = set()
-
+    output = []
+    
     queue.enqueue(start_vertex)
     visited.add(start_vertex)
-
     while len(queue):
       current_vertex = queue.dequeue()
-      action(current_vertex)
-      # neighbors = self.get_neighbors(current_vertex)
+      # action(current_vertex)
+      output.append(current_vertex)
+      neighbors = self.get_children(current_vertex)
 
-      for edge in self.adjacencyList[current_vertex]:
+      for edge in neighbors:
         neighbor_vertex = edge.vertex
 
         if neighbor_vertex in visited:
@@ -90,6 +112,7 @@ class Graph:
         else:
           visited.add(neighbor_vertex)
         queue.enqueue(neighbor_vertex)
+    return output
 
 
 

@@ -54,19 +54,37 @@ def test_get_nighbors_one_node():
     expected = [[0,3]]
     assert actual == expected
 
-def test_breadth_first_search(test_):
-    actual = test_.breadth_first_search(2)
-    expected = [2, 3]
-    assert actual == expected
+def test_breadth_first_search():
+    g =  Graph()
+    zero =  Vertex(0)
+    one =  Vertex(1)
+    two =  Vertex(2)
+    twoToo =  Vertex(2)
+    three =  Vertex(3)
+    four =  Vertex(4)
+    fourToo =  Vertex(4)
+    five =  Vertex(5)
 
-    test_.add_edge(five,one)
-    actual2 = test_.breadth_first_search(2)
-    expected2 = [2, 4, 1, 3]
-    assert actual2 == expected2
+    g.add_vertex(zero)
+    g.add_vertex(one)
+    g.add_vertex(two)
+    g.add_vertex(twoToo)
+    g.add_vertex(three)
+    g.add_vertex(four)
+    g.add_vertex(fourToo)
+    g.add_vertex(five)
 
-    actual3 = test_.breadth_first_search('8')
-    expected3 = 'value does not exist'
-    assert actual3 == expected3
+    g.add_edge(one, two, 3)
+    g.add_edge(one, three)
+    g.add_edge(one, four)
+    g.add_edge(three, five)
+    g.add_edge(four, five)
+    actual = []
+    x = g.breadth_first_search(one)
+    for v in x:
+        actual.append(v.value)
+    expected = [1, 2, 3, 4, 5]
+    assert expected == actual
 
 
 @pytest.fixture
@@ -89,21 +107,4 @@ def test_():
   g.add_vertex(four)
   g.add_vertex(fourToo)
   g.add_vertex(five)
-
-  g.add_edge(zero, two, 3)
-  g.add_edge(two, three)
-  g.add_edge(two, four)
-  g.add_edge(three, five)
-  g.add_edge(four, five)
-
   return g
-
-
-#   g.add_node('A')
-#     g.add_node('B')
-#     g.add_node('C')
-#     g.add_node('D')
-
-#     g.add_edge('A','B',9)
-#     g.add_edge('A','C')
-#     g.add_edge('B','D')
