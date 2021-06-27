@@ -1,4 +1,5 @@
 from collections import deque
+# from stacks_and_queues.stacks_and_queues import *
 class Vertex:
   def __init__(self,value):
     self.value = value
@@ -7,6 +8,24 @@ class Edge:
   def __init__(self,vertex, weight =0):
     self.vertex = vertex
     self.weight = weight
+
+class Queue():
+
+    def __init__(self) -> None:
+
+        self.dq = deque()
+
+    def enqueue(self, value):
+
+        self.dq.appendleft(value)
+
+    def dequeue(self):
+
+        return self.dq.pop()
+
+    def __len__(self):
+
+        return len(self.dq)
 
 class Graph:
 
@@ -50,14 +69,50 @@ class Graph:
       result = []
       if len(self.adjacencyList.get(vertex)):
 
-          for l in range(len(self.adjacencyList.get(vertex))):
-            result.append([self.adjacencyList.get(vertex)[l].vertex.value,self.adjacencyList.get(vertex)[l].weight])
+        for l in range(len(self.adjacencyList.get(vertex))):
+          result.append([self.adjacencyList.get(vertex)[l].vertex.value,self.adjacencyList.get(vertex)[l].weight])
       
       return result
 
 
   def size(self):
     return len(self.adjacencyList)
+
+  
+  def __str__(self) :
+    if self.adjacencyList:
+      result = ''
+      for v in self.adjacencyList:
+          result += f"{v}:{self.get_neighbors(v)}, "
+      return result
+    else:
+      return 'null'
+
+  def get_children(self, vertex):
+    return self.adjacencyList.get(vertex, [])
+
+  def breadth_first_search(self, start_vertex, action=(lambda x: None)):
+    queue = Queue()
+    visited = set()
+    output = []
+    
+    queue.enqueue(start_vertex)
+    visited.add(start_vertex)
+    while len(queue):
+      current_vertex = queue.dequeue()
+      # action(current_vertex)
+      output.append(current_vertex)
+      neighbors = self.get_children(current_vertex)
+
+      for edge in neighbors:
+        neighbor_vertex = edge.vertex
+
+        if neighbor_vertex in visited:
+          continue
+        else:
+          visited.add(neighbor_vertex)
+        queue.enqueue(neighbor_vertex)
+    return output
 
 
 
@@ -86,3 +141,5 @@ if __name__ == "__main__":
   g.add_edge(two, four)
   g.add_edge(three, five)
   g.add_edge(four, five)
+  
+  g.breadth_first_search(zero, lambda v: print(v.value))

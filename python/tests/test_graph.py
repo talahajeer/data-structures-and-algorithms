@@ -54,6 +54,38 @@ def test_get_nighbors_one_node():
     expected = [[0,3]]
     assert actual == expected
 
+def test_breadth_first_search():
+    g =  Graph()
+    zero =  Vertex(0)
+    one =  Vertex(1)
+    two =  Vertex(2)
+    twoToo =  Vertex(2)
+    three =  Vertex(3)
+    four =  Vertex(4)
+    fourToo =  Vertex(4)
+    five =  Vertex(5)
+
+    g.add_vertex(zero)
+    g.add_vertex(one)
+    g.add_vertex(two)
+    g.add_vertex(twoToo)
+    g.add_vertex(three)
+    g.add_vertex(four)
+    g.add_vertex(fourToo)
+    g.add_vertex(five)
+
+    g.add_edge(one, two, 3)
+    g.add_edge(one, three)
+    g.add_edge(one, four)
+    g.add_edge(three, five)
+    g.add_edge(four, five)
+    actual = []
+    x = g.breadth_first_search(one)
+    for v in x:
+        actual.append(v.value)
+    expected = [1, 2, 3, 4, 5]
+    assert expected == actual
+
 
 @pytest.fixture
 def test_():
@@ -75,5 +107,4 @@ def test_():
   g.add_vertex(four)
   g.add_vertex(fourToo)
   g.add_vertex(five)
-
   return g
