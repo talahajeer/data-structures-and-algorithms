@@ -1,5 +1,5 @@
 from collections import deque
-# from stacks_and_queues.stacks_and_queues import *
+from stacks_and_queues.stacks_and_queues import *
 class Vertex:
   def __init__(self,value):
     self.value = value
@@ -119,19 +119,39 @@ class Graph:
     available_trip = False
     total_trip = 0
     # vertices = self.get_vertices() # [all city names]
-    road_trip = self.get_neighbors(city_names[0]) # [[cityname,edgewight],....]
-    print("get neighbors",road_trip)
+    # print("get neighbors",road_trip)
     for city in city_names:
+      if not available_trip:
+        road_trip = self.get_neighbors(city_names.index(city)) # [[cityname,edgewight],....]
         for road in road_trip:
-          if city in road: 
+          if city_names[1] in road: 
             available_trip = True
             total_trip +=road[1]
             print("total trip",total_trip)
-          else:
             break
+      else:
+        return [False,0]
     print([available_trip,total_trip])
-    # return [available_trip,total_trip]
+    return [available_trip,total_trip]
 
+
+  def depth_first(self, v):
+    vertices = []
+    stack = Stack()
+    stack.push(v)
+    visited = []
+    while not stack.is_empty():
+      top_vertex = stack.pop()
+      vertices.append(top_vertex)
+
+      top_vertex_neighbors = self.get_neighbors(top_vertex)
+
+      for neighbor in top_vertex_neighbors:
+        if  not neighbor[0] in visited:
+          stack.push(neighbor[0])
+          visited.append(neighbor[0])
+    return vertices
+    
 
 
 
