@@ -1,5 +1,5 @@
 from collections import deque
-# from stacks_and_queues.stacks_and_queues import *
+from stacks_and_queues.stacks_and_queues import *
 class Vertex:
   def __init__(self,value):
     self.value = value
@@ -115,31 +115,71 @@ class Graph:
     return output
 
 
+  def business_trip(self,city_names):
+    available_trip = False
+    total_trip = 0
+    # vertices = self.get_vertices() # [all city names]
+    # print("get neighbors",road_trip)
+    for city in city_names:
+      if not available_trip:
+        road_trip = self.get_neighbors(city_names.index(city)) # [[cityname,edgewight],....]
+        for road in road_trip:
+          if city_names[1] in road: 
+            available_trip = True
+            total_trip +=road[1]
+            print("total trip",total_trip)
+            break
+      else:
+        return [False,0]
+    print([available_trip,total_trip])
+    return [available_trip,total_trip]
+
+
+  def depth_first(self, v):
+    vertices = []
+    stack = Stack()
+    stack.push(v)
+    visited = []
+    while not stack.is_empty():
+      top_vertex = stack.pop()
+      vertices.append(top_vertex)
+
+      top_vertex_neighbors = self.get_neighbors(top_vertex)
+
+      for neighbor in top_vertex_neighbors:
+        if  not neighbor[0] in visited:
+          stack.push(neighbor[0])
+          visited.append(neighbor[0])
+    return vertices
+    
+
+
+
 
 if __name__ == "__main__":
   g =  Graph()
-  zero =  Vertex(0)
-  one =  Vertex(1)
-  two =  Vertex(2)
-  twoToo =  Vertex(2)
-  three =  Vertex(3)
-  four =  Vertex(4)
-  fourToo =  Vertex(4)
-  five =  Vertex(5)
+  Pandora =  Vertex("Pandora")
+  Narnia =  Vertex("Narnia")
+  Metroville =  Vertex("Metroville")
+  Arendelle =  Vertex("Arendelle")
+  New_Monstropolis =  Vertex("New_Monstropolis")
+  Naboo =  Vertex("Naboo")
 
-  g.add_vertex(zero)
-  g.add_vertex(one)
-  g.add_vertex(two)
-  g.add_vertex(twoToo)
-  g.add_vertex(three)
-  g.add_vertex(four)
-  g.add_vertex(fourToo)
-  print(g.add_vertex(five))
+  g.add_vertex(Pandora)
+  g.add_vertex(Narnia)
+  g.add_vertex(Metroville)
+  g.add_vertex(Arendelle)
+  g.add_vertex(New_Monstropolis)
+  g.add_vertex(Naboo)
 
-  g.add_edge(zero, two, 3)
-  g.add_edge(two, three)
-  g.add_edge(two, four)
-  g.add_edge(three, five)
-  g.add_edge(four, five)
-  
-  g.breadth_first_search(zero, lambda v: print(v.value))
+  g.add_edge(Pandora, Metroville, 82)
+  g.add_edge(Pandora, Arendelle,150)
+  g.add_edge(Narnia, Metroville,37)
+  g.add_edge(Narnia, Naboo,250)
+  g.add_edge(Arendelle, Metroville,99)
+  g.add_edge(Arendelle, New_Monstropolis,42)
+  g.add_edge(Naboo, Metroville,26)
+  g.add_edge(Naboo, New_Monstropolis,73)
+  g.add_edge(Metroville, New_Monstropolis,105)
+
+  print(g.business_trip([Naboo, Pandora]))
