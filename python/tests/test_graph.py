@@ -54,6 +54,14 @@ def test_get_nighbors_one_node():
     expected = [[0,3]]
     assert actual == expected
 
+
+def test_business_trip(graph):
+    cities_lists =[['Jordan', 'Syria', 'Turkey'],['Turkey','KSA','Jordan'],['Iraq', 'Syria'],['KSA','Turkey']]
+    actual = [business_trip(graph, cities) for cities in cities_lists]
+    expected = [(True,'$60'),(False,'$0'),(True,'$25'),(False,'$0')]
+    assert actual == expected
+
+    
 def test_breadth_first_search():
     g =  Graph()
     zero =  Vertex(0)
