@@ -61,3 +61,17 @@ Implement your own Graph. The graph should be represented as an adjacency list, 
      Arguments: node
      Returns a collection of edges connected to the given node
      Include the weight of the connection in the returned collection
+## Breadth first
+![breadth-first](../challenges/assets/graph-breadth-first.jpg)
+
+## Depth first
+  Write the depth first method for the Graph class:
+
+ - Arguments: An adjacency list as a graph
+ - Return: A collection of nodes in their pre-order depth-first traversal order
+ - Display the collection
+ - Approach & Efficiency
+ - Big O:
+     Time -> O(n)
+     Space -> O(n)
+![depth_first](../challenges/assets/graph-depth-first.jpg)
